@@ -1,7 +1,7 @@
 class TicTacToe {
     constructor() {
-        this.curPlaySymb = x;
-        this.isFin = false;
+        this.curPlaySymb = "x";
+        this.sum = 0;
         this.isDrw = false;
         this.noTurns =false;
         this.winner = null;
@@ -14,7 +14,9 @@ class TicTacToe {
 
     nextTurn(rowIndex, columnIndex) {
         if (this.field[rowIndex][columnIndex] === null) {
-            this.field[rowIndex][columnIndex] = this.curPlaySymb;    
+            this.field[rowIndex][columnIndex] = this.curPlaySymb;
+            this.curPlaySymb = this.curPlaySymb === "x" ? "o" :"x";
+            this.sum++;
             }
     }
 
@@ -27,11 +29,11 @@ class TicTacToe {
     }
 
     noMoreTurns() {
-
+        return this.sum === 9 ? true : false;
     }
 
     isDraw() {
-        return this.isDrw;
+        return !this.getWinner() && this.sum === 9 ? true : false; 
     }
 
     getFieldValue(rowIndex, colIndex) {
